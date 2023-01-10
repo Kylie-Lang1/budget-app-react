@@ -59,10 +59,11 @@ function NewForm() {
                 <label htmlFor="date">Date: 
                     <Datepicker 
                         id="date"
-                        // dateFormat="MM/dd/yyyy"
+                        placeholderText="mm/dd/yyyy"
                         value={date}
                         selected={date}
                         onChange={(date) => handleDate(date)} 
+                        shouldCloseOnSelect={true}
                     />
                 </label>
 

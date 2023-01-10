@@ -25,10 +25,11 @@ function EditForm() {
     }
 
     const handleDate = (date) => {
-        // const formatDate = new Date(date)
-        // setDate(formatDate.toString("MM-dd-yyyy"))
-        setTransaction({...transaction, date})
+        const dateString = date.toLocaleDateString()
+        const date_formatted = dateString.slice(0, dateString.length - 4) + dateString.slice(dateString.length-2)
+
         setDate(date)
+        setTransaction({...transaction, date, date_formatted})
         console.log(date)
     }
 
