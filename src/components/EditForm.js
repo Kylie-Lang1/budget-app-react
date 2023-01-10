@@ -24,10 +24,13 @@ function EditForm() {
         setTransaction({...transaction, [e.target.id]: e.target.value})
     }
 
-    // const handleDate = (date) => {
-    //     setDate(date)
-    //     setTransaction({...transaction, ["date"]: date.toString().slice(4, 15)})
-    // }
+    const handleDate = (date) => {
+        // const formatDate = new Date(date)
+        // setDate(formatDate.toString("MM-dd-yyyy"))
+        setTransaction({...transaction, date})
+        setDate(date)
+        console.log(date)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -43,7 +46,8 @@ function EditForm() {
             .get(`${API}/transactions/${id}`)
             .then(res => {
                 setTransaction(res.data)
-                setDate.parseISO(res.data.date)
+                setDate(Date.parse(res.data.date))
+                console.log(Date.parse(res.data.date))
             })
             .catch(err => console.log(err))
     }, [id])
@@ -56,7 +60,7 @@ function EditForm() {
                         id="date"
                         value={date}
                         selected={date}
-                        // onChange={() => handleDate()} 
+                        onChange={(date) => handleDate(date)} 
                     />
                 </label>
 

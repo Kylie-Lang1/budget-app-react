@@ -11,16 +11,21 @@ function NewForm() {
     const [transaction, setTransaction] = useState({
         id: crypto.randomUUID(),
         item_name: "",
-        amount: null,
+        amount: "",
         date: "",
+        date_formatted: "",
         from: "",
         category: ""
     })
     const [date, setDate] = useState("")
 
     const handleDate = (date) => {
+        const dateString = date.toLocaleDateString()
+        const date_formatted = dateString.slice(0, dateString.length - 4) + dateString.slice(dateString.length-2)
+        console.log(date_formatted)
+        
         setDate(date)
-        setTransaction({...transaction, ["date"]: date.toString().slice(4, 15)})
+        setTransaction({...transaction, date, date_formatted})
     }
 
     const handleTextChange = (e) => {
@@ -54,6 +59,7 @@ function NewForm() {
                 <label htmlFor="date">Date: 
                     <Datepicker 
                         id="date"
+                        // dateFormat="MM/dd/yyyy"
                         value={date}
                         selected={date}
                         onChange={(date) => handleDate(date)} 

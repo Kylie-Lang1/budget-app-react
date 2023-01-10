@@ -14,6 +14,7 @@ function Home() {
         axios
             .get(`${API}/transactions`)
             .then(res => setTransactions(res.data))
+            .then(console.log(transactions))
             .catch(err => console.log(err))
     }, [])
 
@@ -33,7 +34,7 @@ function Home() {
                 transactions.map((transaction) => {
                     return (
                         <tr key={transaction.id}>
-                            <td>{transaction.date}</td>
+                            <td>{transaction.date_formatted}</td>
                             <td><Link to={`/transactions/${transaction.id}`}>{transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1)}</Link></td>
                             <td>${transaction.amount}</td>
                         </tr>

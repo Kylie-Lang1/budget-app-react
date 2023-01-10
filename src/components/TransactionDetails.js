@@ -22,7 +22,7 @@ function TransactionDetails() {
             .get(`${API}/transactions/${id}`)
             .then(res => setTransaction(res.data))
             .catch(err => console.log(err))
-    }, [id])
+    }, [id, navigate])
 
     return (
         <div className="details">
