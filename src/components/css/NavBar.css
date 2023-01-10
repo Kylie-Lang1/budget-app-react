@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: lightblue;
+}
+
+.nav h1 {
+    padding: 20px 0px;
+    text-align: center;
+}

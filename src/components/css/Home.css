@@ -1,0 +1,18 @@
+.home h1 {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.home table {
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.home tr {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    background-color: lightyellow;
+    text-align: center;
+    border-bottom: 1px solid navy;
+}
