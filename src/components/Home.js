@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "./css/Home.css"
 
@@ -7,6 +7,7 @@ const API = process.env.REACT_APP_API_URL
 
 function Home() {
     const [transactions, setTransactions] = useState([])
+    const navigate = useNavigate()
 
     const currentBalance = transactions.reduce((acc, curr) =>  acc + curr.amount, 0)
 
@@ -20,7 +21,7 @@ function Home() {
 
     return (
         <div className="home">
-            <h1>Current Balance: ${currentBalance}</h1>
+            <h1>Current Balance: <span className={currentBalance > 0 ? "green" : "red"}>${currentBalance}</span></h1>
             <table className="table-container">
                 <thead>
                     <tr>
@@ -33,11 +34,13 @@ function Home() {
                 {
                 transactions.map((transaction) => {
                     return (
-                        <tr key={transaction.id}>
-                            <td>{transaction.date_formatted}</td>
-                            <td><Link to={`/transactions/${transaction.id}`}>{transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1)}</Link></td>
-                            <td>${transaction.amount}</td>
-                        </tr>
+                        <Link to={`/transactions/${transaction.id}`}>
+                            <tr key={transaction.id} onclick={() => navigate(`/transaction/${transaction.id}`)}>
+                                <td>{transaction.date_formatted}</td>
+                                <td><Link to={`/transactions/${transaction.id}`}>{transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1)}</Link></td>
+                                <td>${transaction.amount}</td>
+                            </tr>
+                        </Link>
                     )
                 })
             }

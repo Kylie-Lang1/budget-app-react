@@ -1,13 +1,15 @@
 .home {
+    box-sizing: border-box;
     background-image: url("../../assets/background.png");
-    /* background-image: url("https://media.istockphoto.com/id/1133320303/vector/abstract-blue-and-orange-vector-background.jpg?s=612x612&w=0&k=20&c=gpLUqc1B2eHzwhaGfnTplWnFcKihNVXghZ1JCM40zEw="); */
     height: 670px;
     background-size: contain;
+    padding-top: 50px;
 }
 
 .home h1 {
     text-align: center;
-    padding-top: 50px;
+    background-color: white;
+    padding: 5px;
 }
 
 .home table {
@@ -19,7 +21,36 @@
 .home tr {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    background-color: lightyellow;
     text-align: center;
     border-bottom: 1px solid navy;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 50px;
+    background-color: white;
+}
+
+.home thead tr {
+    font-size: 20px;
+    background-color: rgb(252, 252, 119);
+}
+
+.home tbody tr {
+    font-size: 18px;
+}
+
+.home tbody tr:hover {
+    background-color: rgb(234, 253, 253);
+    transform: scale(1.05, 1.2);
+}
+
+.home a {
+    text-decoration: none;
+}
+
+.home .green {
+    color: green;
+}
+
+.home .red {
+    color: red;
 }
