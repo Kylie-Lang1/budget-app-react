@@ -1,3 +1,10 @@
+.home {
+    background-image: url("../../assets/background.png");
+    /* background-image: url("https://media.istockphoto.com/id/1133320303/vector/abstract-blue-and-orange-vector-background.jpg?s=612x612&w=0&k=20&c=gpLUqc1B2eHzwhaGfnTplWnFcKihNVXghZ1JCM40zEw="); */
+    height: 670px;
+    background-size: contain;
+}
+
 .home h1 {
     text-align: center;
     padding-top: 50px;

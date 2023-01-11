@@ -6,7 +6,7 @@ function NavBar() {
     return (
         <div className="nav">
             <Link to="/transactions"><h1>Budget App</h1></Link>
-            <button><Link to="/transactions/new">New Form</Link></button>
+            <Link to="/transactions/new"><h2>Add New Transaction</h2></Link>
         </div>
     );
 }

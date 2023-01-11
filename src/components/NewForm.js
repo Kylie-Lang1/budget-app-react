@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Datepicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css" 
+import "./css/NewForm.css"
 
 function NewForm() {
     const API = process.env.REACT_APP_API_URL
@@ -55,8 +56,9 @@ function NewForm() {
 
     return (
         <div className="new">
+            <p>Input information for a new transaction below.</p>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="date">Date: 
+                <label htmlFor="date" className="date">Date: 
                     <Datepicker 
                         id="date"
                         placeholderText="mm/dd/yyyy"
@@ -68,6 +70,7 @@ function NewForm() {
                 </label>
 
                 <label htmlFor="name">Name:
+                <br/>
                     <input 
                         id="item_name" 
                         type="text" 
@@ -77,6 +80,7 @@ function NewForm() {
                 </label>
                 <br/>
                 <label htmlFor="amount">Amount:
+                <br/>
                     <input 
                         id="amount" 
                         type="text" 
@@ -87,6 +91,7 @@ function NewForm() {
                 </label>
                 <br/>
                 <label htmlFor="from">From:
+                <br/>
                     <input 
                         id="from" 
                         type="text" 
@@ -96,6 +101,7 @@ function NewForm() {
                 </label>
                 <br/>
                 <label htmlFor="category">Category:
+                <br/>
                     <select id="category" onChange={handleSelect}>
                         <option value=""></option>
                         <option value="income">Income</option>
@@ -108,7 +114,7 @@ function NewForm() {
                     </select> 
                 </label>
                 <br/>
-                <input type="submit" />
+                <input type="submit" id="submit"/>
             </form>
         </div>
     );

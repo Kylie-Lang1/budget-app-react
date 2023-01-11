@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import Datepicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import "./css/EditForm.css"
 
 function EditForm() {
     const [transaction, setTransaction] = useState({})
@@ -55,6 +56,7 @@ function EditForm() {
 
     return (
         <div className="edit">
+            <p>Make edits to an existing transaction below.</p>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="date">Date: 
                     <Datepicker 
@@ -106,7 +108,7 @@ function EditForm() {
                     </select> 
                 </label>
                 <br/>
-                <input type="submit" />
+                <input type="submit" id="submit_edit" />
             </form>
         </div>
     );

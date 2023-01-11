@@ -1,0 +1,59 @@
+.edit {
+    margin: 0px;
+    box-sizing: border-box;
+    padding-top: 50px;
+    padding-bottom: 105px;
+    background-image: url("../../assets/background.png");
+    height: 670px;
+    background-size: contain;
+}
+
+.edit p {
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+}
+
+.edit form {
+    background-color: rgb(238, 236, 236);
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 15%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px 100px;
+}
+
+.edit label {
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.edit input {
+    height: 25px;
+    width: 200px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.edit select {
+    height: 25px;
+    width: 210px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.edit #submit_edit {
+    margin-top: 15px;
+    margin: auto;
+    width: 210px;
+    background-color: rgb(188, 211, 245);
+    border: 1px solid navy;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+#submit_edit:hover {
+    background-color: rgb(142, 175, 223)
+}
