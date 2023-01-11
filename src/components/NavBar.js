@@ -1,6 +1,8 @@
+//DEPENDENCIES
 import { Link } from "react-router-dom"
 import "./css/NavBar.css"
 
+//Function that renders a navigation bar that has links to the show index and new transaction pages
 function NavBar() {
 
     return (
