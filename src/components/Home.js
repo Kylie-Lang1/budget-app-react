@@ -38,7 +38,7 @@ function Home() {
                             <tr key={transaction.id} onclick={() => navigate(`/transaction/${transaction.id}`)}>
                                 <td>{transaction.date_formatted}</td>
                                 <td><Link to={`/transactions/${transaction.id}`}>{transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1)}</Link></td>
-                                <td>${transaction.amount}</td>
+                                <td className={transaction.amount > 0 ? "green" : "red"}>${transaction.amount}</td>
                             </tr>
                         </Link>
                     )
