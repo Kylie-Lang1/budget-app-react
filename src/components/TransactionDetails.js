@@ -40,6 +40,7 @@ function TransactionDetails() {
                         <p><span>Date:</span> {transaction.date_formatted}</p>
                         <p><span>Name:</span> {transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1).toLowerCase()}</p>
                         <p><span>Amount:</span> ${transaction.amount}</p>
+                        <p><span>Action:</span> {transaction.action}</p>
                         <p><span>From:</span> {transaction.from.charAt(0).toUpperCase() + transaction.from.slice(1).toLowerCase()}</p>
                         <p><span>Category:</span> {transaction.category.charAt(0).toUpperCase() + transaction.category.slice(1)}</p>
                     </div> :
