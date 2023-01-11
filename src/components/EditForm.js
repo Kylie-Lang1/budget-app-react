@@ -1,65 +1,77 @@
+///DEPENDENCIES
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import Datepicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import "./css/EditForm.css"
+const API = process.env.REACT_APP_API_URL
 
+//Function for rendering a form to edit the selected transaction
 function EditForm() {
     const [transaction, setTransaction] = useState({})
     const [date, setDate] = useState("")
     const { id } = useParams()
     const navigate = useNavigate()
-    const API = process.env.REACT_APP_API_URL
     
+    //Takes in Datepicker date in ISO format and converts to LocaleDateString formatted into mm/dd/yy
     const handleDate = (date) => {
         const dateString = date.toLocaleDateString()
         const date_formatted = dateString.slice(0, dateString.length - 4) + dateString.slice(dateString.length-2)
     
+        //Updates state with ISO and LocaleDate dataes
         setDate(date)
         setTransaction({...transaction, date, date_formatted})
-        console.log(date)
     }
 
+    //Updates state for each text change with error handling to convert the input amount from a string to number 
     const handleTextChange = (e) => {
         if(e.target.id === "amount"){
             setTransaction({...transaction, [e.target.id]: Number(e.target.value)})
         } else {
             setTransaction({...transaction, [e.target.id]:e.target.value})
         }
-        console.log(transaction)
     }
 
+    //Updates state when a category is seleected
     const handleSelect = (e) => {
         setTransaction({...transaction, [e.target.id]: e.target.value})
     }
 
+    //Updates state when a radio button is selected   
     const handleRadio = () => {
-
         const action = document.querySelector("input[type=radio][name=action]:checked").value
         setTransaction({...transaction, action})
     }
 
+    //On submit, transaction amount gets converted to a negative number if action is withrawal.  
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if(transaction.action === "withdrawal"){
+            transaction.amount = 0 - transaction.amount
+            setTransaction({...transaction})
+        } 
+
+        //Makes a put request to update the current transaction with current date
         axios
             .put(`${API}/transactions/${id}`, transaction)
             .then(() => navigate(`/transactions/${id}`))
             .catch(err => console.log(err))
     }
 
+    //useEffect makes a get request to recieve date for selected transaction and parses date information into data the Datepicker can read
     useEffect (() => {
         axios
             .get(`${API}/transactions/${id}`)
             .then(res => {
                 setTransaction(res.data)
                 setDate(Date.parse(res.data.date))
-                console.log(Date.parse(res.data.date))
             })
             .catch(err => console.log(err))
     }, [id])
 
+    //React rendering of form that autofills with selected transaction data and allows users to make changes
     return (
         <div className="edit">
             <p>Make edits to an existing transaction below.</p>

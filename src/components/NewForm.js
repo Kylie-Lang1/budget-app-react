@@ -1,13 +1,17 @@
+//DEPENDENCIES
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Datepicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css" 
 import "./css/NewForm.css"
+const API = process.env.REACT_APP_API_URL
 
+//Function to create form to add new transactions
 function NewForm() {
-    const API = process.env.REACT_APP_API_URL
+    //Define state for Datepicker date and new transaction data
     const navigate = useNavigate()
+    const [date, setDate] = useState("")
 
     const [transaction, setTransaction] = useState({
         id: crypto.randomUUID(),
@@ -19,17 +23,19 @@ function NewForm() {
         category: "",
         action: ""
     })
-    const [date, setDate] = useState("")
 
+    //Takes in Datepicker date in ISO format and converts to LocaleDateString formatted into mm/dd/yy
     const handleDate = (date) => {
         const dateString = date.toLocaleDateString()
         const date_formatted = dateString.slice(0, dateString.length - 4) + dateString.slice(dateString.length-2)
         console.log(date_formatted)
         
+        //Updates state with ISO and LocaleDate dataes
         setDate(date)
         setTransaction({...transaction, date, date_formatted})
     }
 
+    //Updates state for each text change with error handling to convert the input amount from a string to number
     const handleTextChange = (e) => {
         if(e.target.id === "amount"){
             setTransaction({...transaction, [e.target.id]: Number(e.target.value)})
@@ -39,15 +45,18 @@ function NewForm() {
         console.log(transaction)
     }
 
+    //Updates state when a category is seleected
     const handleSelect = (e) => {
         setTransaction({...transaction, [e.target.id]: e.target.value})
     }
 
+    //Updates state when a radio button is selected
     const handleRadio = () => {
         const action = document.querySelector("input[type=radio][name=action]:checked").value
         setTransaction({...transaction, action})
     }
 
+    //On submit, transaction amount gets converted to a negative number if action is withrawal.  
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -56,6 +65,7 @@ function NewForm() {
             setTransaction({...transaction})
         } 
         
+        //Makes a post request to add new transaction and navigates to index page
         axios
             .post(`${API}/transactions`, transaction)
             .then((res) => {
@@ -65,6 +75,7 @@ function NewForm() {
             .catch(err => console.log(err))
     }
 
+    //React rendeirng of new transaction form
     return (
         <div className="new">
             <p>Input information for a new transaction below.</p>
