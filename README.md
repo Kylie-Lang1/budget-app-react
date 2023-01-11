@@ -4,7 +4,7 @@ Github repo - https://github.com/Kylie-Lang1/budget-app-express
 
 Deployed back-end - https://budget-app-express.onrender.com
 
-Deployed front-end - https://rainbow-daifuku-6fd866.netlify.app/
+Deployed front-end - https://kylies-budget-app.netlify.app/
 
 Current Problems:
 - Working on sorting dates chronologically
