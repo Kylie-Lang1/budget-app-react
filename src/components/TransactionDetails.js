@@ -26,20 +26,23 @@ function TransactionDetails() {
 
     return (
         <div className="details">
-            {
-                transaction ? 
-            <div className="info">
-                <p><span>Date:</span> {transaction.date}</p>
-                <p><span>Category:</span> {transaction.category.charAt(0).toUpperCase() + transaction.category.slice(1)}</p>
-                <p><span>Amount:</span> ${transaction.amount}</p>
-                <p><span>From:</span> {transaction.from.charAt(0).toUpperCase() + transaction.from.slice(1)}</p>
-            </div>
-                : <p>Error</p>
-            }
-            <div className="buttons">
-                <button><Link to="/transactions">Back</Link></button>
-                <button><Link to={`/transactions/${id}/edit`}>Edit</Link></button>
-                <button onClick={handleDelete}><Link to="/transactions">Delete</Link></button>
+            <div className="container">
+                {
+                    transaction ? 
+                <div className="info">
+                    <p><span>Date:</span> {transaction.date_formatted}</p>
+                    <p><span>Name:</span> {transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1).toLowerCase()}</p>
+                    <p><span>Amount:</span> ${transaction.amount}</p>
+                    <p><span>From:</span> {transaction.from.charAt(0).toUpperCase() + transaction.from.slice(1).toLowerCase()}</p>
+                    <p><span>Category:</span> {transaction.category.charAt(0).toUpperCase() + transaction.category.slice(1)}</p>
+                </div>
+                    : <p>Error</p>
+                }
+                <div className="buttons">
+                    <Link to="/transactions"><button>Back</button></Link>
+                    <Link to={`/transactions/${id}/edit`}><button>Edit</button></Link>
+                    <button onClick={handleDelete}>Delete</button>
+                </div>
             </div>
         </div>
     );
