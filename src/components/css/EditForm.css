@@ -1,7 +1,7 @@
 .edit {
     margin: 0px;
     box-sizing: border-box;
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 105px;
     background-image: url("../../assets/background.png");
     height: 670px;
@@ -19,15 +19,17 @@
     background-color: rgb(238, 236, 236);
     border: 1px solid black;
     border-radius: 25px;
-    width: 15%;
+    width: 20%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 30px 100px;
 }
 
 .edit label {
-    font-size: large;
+    font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left: 40px;
 }
 
 .edit input {
@@ -35,6 +37,7 @@
     width: 200px;
     margin-top: 8px;
     margin-bottom: 20px;
+    margin-left: 40px;
 }
 
 .edit select {
@@ -42,6 +45,49 @@
     width: 210px;
     margin-top: 8px;
     margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.edit .radio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: small;
+    padding: 0px;
+    align-items: center;
+    margin-left: -60px;
+}
+
+.edit .radio input {
+    height: 13px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.edit .radio label {
+    margin-left: -5px;
+    font-weight: 100;
+}
+
+.edit .deposit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0px;
+    width: 150px;
+    align-items: baseline;
+}
+
+.edit #deposit {
+    margin-left: 90px;
+}
+
+.edit .withdrawal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: baseline;
+}
+
+.edit .withdrawal label {
+    margin-left: -20px;
 }
 
 .edit #submit_edit {
@@ -52,6 +98,7 @@
     border: 1px solid navy;
     font-size: 18px;
     border-radius: 20px;
+    margin-left: 40px;
 }
 
 #submit_edit:hover {

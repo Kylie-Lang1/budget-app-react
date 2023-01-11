@@ -11,6 +11,15 @@ function EditForm() {
     const { id } = useParams()
     const navigate = useNavigate()
     const API = process.env.REACT_APP_API_URL
+    
+    const handleDate = (date) => {
+        const dateString = date.toLocaleDateString()
+        const date_formatted = dateString.slice(0, dateString.length - 4) + dateString.slice(dateString.length-2)
+    
+        setDate(date)
+        setTransaction({...transaction, date, date_formatted})
+        console.log(date)
+    }
 
     const handleTextChange = (e) => {
         if(e.target.id === "amount"){
@@ -25,13 +34,10 @@ function EditForm() {
         setTransaction({...transaction, [e.target.id]: e.target.value})
     }
 
-    const handleDate = (date) => {
-        const dateString = date.toLocaleDateString()
-        const date_formatted = dateString.slice(0, dateString.length - 4) + dateString.slice(dateString.length-2)
+    const handleRadio = () => {
 
-        setDate(date)
-        setTransaction({...transaction, date, date_formatted})
-        console.log(date)
+        const action = document.querySelector("input[type=radio][name=action]:checked").value
+        setTransaction({...transaction, action})
     }
 
     const handleSubmit = (e) => {
@@ -96,23 +102,23 @@ function EditForm() {
                             name="action"
                             id="deposit"
                             value="deposit"
-                            checked={transaction.action}
+                            // checked={transaction.action}
                             onClick={handleRadio}
                             required
                         />
                         <label htmlFor="deposit">Deposit </label>
                     </div>
-                    <div className="withdrawl">
+                    <div className="withdrawal">
                         <input 
                             type="radio"
                             name="action"
-                            id="withdrawl"
+                            id="withdrawal"
                             value="withdrawal"
-                            checked={transaction.action}
+                            // checked={transaction.action}
                             onClick={handleRadio}
                             required
                         />
-                        <label htmlFor="withdrawl">Withdrawal</label>
+                        <label htmlFor="withdrawal">Withdrawal</label>
                     </div>
                 </div>
                 <label htmlFor="from">From:

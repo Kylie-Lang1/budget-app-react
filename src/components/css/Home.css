@@ -60,3 +60,7 @@
 .home .red {
     color: red;
 }
+
+.home .white {
+    color: rgb(211, 211, 9);
+}

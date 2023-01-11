@@ -21,7 +21,13 @@ function Home() {
 
     return (
         <div className="home">
-            <h1>Current Balance: <span className={currentBalance > 0 ? "green" : "red"}>${currentBalance}</span></h1>
+            {
+                currentBalance < 0 ?
+                <h1>Current Balance: <span className="red">-${Math.abs(currentBalance)}</span></h1> :
+                    currentBalance > 1000 ?
+                    <h1>Current Balance: <span className="green">${currentBalance}</span></h1> :
+                    <h1>Current Balance: <span className="white">${currentBalance}</span></h1> 
+            }
             <table className="table-container">
                 <thead>
                     <tr>
@@ -38,7 +44,11 @@ function Home() {
                             <tr key={transaction.id} onclick={() => navigate(`/transaction/${transaction.id}`)}>
                                 <td>{transaction.date_formatted}</td>
                                 <td><Link to={`/transactions/${transaction.id}`}>{transaction.item_name.charAt(0).toUpperCase() + transaction.item_name.slice(1)}</Link></td>
-                                <td className={transaction.amount > 0 ? "green" : "red"}>${transaction.amount}</td>
+                                {
+                                    transaction.action === "withdrawal" ?
+                                    <td className="red">-${Math.abs(transaction.amount)}</td> :
+                                    <td className="green">${transaction.amount}</td>
+                                }
                             </tr>
                         </Link>
                     )

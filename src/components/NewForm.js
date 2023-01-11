@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Datepicker from "react-datepicker"
@@ -44,12 +44,18 @@ function NewForm() {
     }
 
     const handleRadio = () => {
-        
+        const action = document.querySelector("input[type=radio][name=action]:checked").value
+        setTransaction({...transaction, action})
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if(transaction.action === "withdrawal"){
+            transaction.amount = 0 - transaction.amount
+            setTransaction({...transaction})
+        } 
+        
         axios
             .post(`${API}/transactions`, transaction)
             .then((res) => {
@@ -110,16 +116,16 @@ function NewForm() {
                         />
                         <label htmlFor="deposit">Deposit </label>
                     </div>
-                    <div className="withdrawl">
+                    <div className="withdrawal">
                         <input 
                             type="radio"
                             name="action"
-                            id="withdrawl"
+                            id="withdrawal"
                             value="withdrawal"
                             onClick={handleRadio}
                             required
                         />
-                        <label htmlFor="withdrawl">Withdrawal</label>
+                        <label htmlFor="withdrawal">Withdrawal</label>
                     </div>
                 </div>
                 <label htmlFor="from">From:
