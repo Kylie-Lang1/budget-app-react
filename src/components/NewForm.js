@@ -16,7 +16,8 @@ function NewForm() {
         date: "",
         date_formatted: "",
         from: "",
-        category: ""
+        category: "",
+        action: ""
     })
     const [date, setDate] = useState("")
 
@@ -40,6 +41,10 @@ function NewForm() {
 
     const handleSelect = (e) => {
         setTransaction({...transaction, [e.target.id]: e.target.value})
+    }
+
+    const handleRadio = () => {
+        
     }
 
     const handleSubmit = (e) => {
@@ -66,6 +71,7 @@ function NewForm() {
                         selected={date}
                         onChange={(date) => handleDate(date)} 
                         shouldCloseOnSelect={true}
+                        required
                     />
                 </label>
 
@@ -76,6 +82,7 @@ function NewForm() {
                         type="text" 
                         value={transaction.item_name}
                         onChange={handleTextChange}
+                        required
                     />
                 </label>
                 <br/>
@@ -87,9 +94,34 @@ function NewForm() {
                         placeholder="$"
                         value={transaction.amount}
                         onChange={handleTextChange}
+                        required
                     />
                 </label>
                 <br/>
+                <div className="radio">
+                    <div className="deposit">
+                        <input 
+                            type="radio" 
+                            name="action"
+                            id="deposit"
+                            value="deposit"
+                            onClick={handleRadio}
+                            required
+                        />
+                        <label htmlFor="deposit">Deposit </label>
+                    </div>
+                    <div className="withdrawl">
+                        <input 
+                            type="radio"
+                            name="action"
+                            id="withdrawl"
+                            value="withdrawal"
+                            onClick={handleRadio}
+                            required
+                        />
+                        <label htmlFor="withdrawl">Withdrawal</label>
+                    </div>
+                </div>
                 <label htmlFor="from">From:
                 <br/>
                     <input 
@@ -97,12 +129,13 @@ function NewForm() {
                         type="text" 
                         value={transaction.from}
                         onChange={handleTextChange}
+                        required
                     />
                 </label>
                 <br/>
                 <label htmlFor="category">Category:
                 <br/>
-                    <select id="category" onChange={handleSelect}>
+                    <select id="category" onChange={handleSelect} required>
                         <option value=""></option>
                         <option value="income">Income</option>
                         <option value="savings">Savings</option>

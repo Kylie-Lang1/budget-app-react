@@ -64,6 +64,7 @@ function EditForm() {
                         value={date}
                         selected={date}
                         onChange={(date) => handleDate(date)} 
+                        required
                     />
                 </label>
 
@@ -73,6 +74,7 @@ function EditForm() {
                         type="text" 
                         value={transaction.item_name}
                         onChange={handleTextChange}
+                        required
                     />
                 </label>
                 <br/>
@@ -83,20 +85,48 @@ function EditForm() {
                         placeholder="$"
                         value={transaction.amount}
                         onChange={handleTextChange}
+                        required
                     />
                 </label>
                 <br/>
+                <div className="radio">
+                    <div className="deposit">
+                        <input 
+                            type="radio" 
+                            name="action"
+                            id="deposit"
+                            value="deposit"
+                            checked={transaction.action}
+                            onClick={handleRadio}
+                            required
+                        />
+                        <label htmlFor="deposit">Deposit </label>
+                    </div>
+                    <div className="withdrawl">
+                        <input 
+                            type="radio"
+                            name="action"
+                            id="withdrawl"
+                            value="withdrawal"
+                            checked={transaction.action}
+                            onClick={handleRadio}
+                            required
+                        />
+                        <label htmlFor="withdrawl">Withdrawal</label>
+                    </div>
+                </div>
                 <label htmlFor="from">From:
                     <input 
                         id="from" 
                         type="text" 
                         value={transaction.from}
                         onChange={handleTextChange}
+                        required
                     />
                 </label>
                 <br/>
                 <label htmlFor="category">Category:
-                    <select id="category" value={transaction.category} onChange={handleSelect}>
+                    <select id="category" value={transaction.category} onChange={handleSelect} required>
                         <option value=""></option>
                         <option value="income">Income</option>
                         <option value="savings">Savings</option>
